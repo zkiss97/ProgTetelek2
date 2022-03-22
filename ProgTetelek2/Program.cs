@@ -28,7 +28,7 @@ namespace ProgTetelek2
             this.hossz = 1;
             this.hanyadikvagyok = 0;
             this.nagyobbvagye = 0;
-            this.jel = "+";
+            this.relacio = "";
             this.bennevane = 0;
         }
 
@@ -47,10 +47,50 @@ namespace ProgTetelek2
             }
         }
 
-        public void Kicsinagy(int hossz, int[] tomb)
+        public void Kicsinagy(int hossz, int[] tomb, int nagyobbvagye, string relacio)
         {
-            int[] kicsinagytomb = new int[1];
-            for (int i = 0; )
+            int[] kicsitomb = new int[hossz];
+            int[] nagytomb = new int[hossz];
+
+            Console.WriteLine("Add meg a vizsgált értéket: ");
+            nagyobbvagye = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("Add meg a relációt: ");
+            relacio = Console.ReadLine();
+
+            for (int i = 0; i < tomb.Length; i++)
+            {
+                if ((relacio != "<") && (relacio != ">"))
+                {
+                    Console.WriteLine("Érvénytelen");
+                    break;
+                }
+                if (relacio == "<")
+                {
+                    for (int j = 0; j < tomb.Length; j++)
+                    {
+                        kicsitomb[j] = tomb[i];
+                    }
+                }
+                if (relacio == ">")
+                {
+                    for (int j = 0; j < tomb.Length; j++)
+                    {
+                        nagytomb[j] = tomb[i];
+                    }
+                }
+            }
+            Console.WriteLine("A kicsi tömb elemei:");
+            for (int i = 0; i < kicsitomb.Length; i++)
+            {
+                Console.WriteLine(kicsitomb[i]);
+            }
+            Console.WriteLine("A nagy tömb elemei:");
+            for (int i = 0; i < nagytomb.Length; i++)
+            {
+                Console.WriteLine(nagytomb[i]);
+            }
+
         }
 
         public void Bennevane(int hossz, int[] tomb, int bennevane)
@@ -82,6 +122,8 @@ namespace ProgTetelek2
             Random rnd = new Random();
             Courage tomb1 = new Courage();
             int contains;
+            int bigorsmall;
+            string jel;
 
 
             Console.WriteLine("Add meg, hány eleme van a tömbnek: ");
@@ -114,8 +156,13 @@ namespace ProgTetelek2
             contains = int.Parse(Console.ReadLine());
             tomb1.Bennevane(tomb1.hossz, numbers, contains);
 
-            Console.WriteLine("\nA tömb negatív elemeinek darabszáma: ");
-            tomb1.Negativok(tomb1.hossz, numbers);
+            Console.WriteLine("\nA tömb tetszőleges értékétől kisebb és nagyobb számok: ");
+            Console.WriteLine("A vizsgálandó érték: ");
+            bigorsmall = int.Parse(Console.ReadLine());
+            Console.WriteLine("Az összehasonlítás: ");
+            jel = Console.ReadLine();
+
+            tomb1.Kicsinagy(tomb1.hossz, numbers, bigorsmall, jel);
 
 
 
