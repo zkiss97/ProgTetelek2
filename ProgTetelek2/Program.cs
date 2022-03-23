@@ -89,7 +89,7 @@ namespace ProgTetelek2
                     {
                         for (int j = 0; j < tomb.Length; j++)
                         {
-                            
+                            //...
                         }
                     }
                     if (relacio == ">")
