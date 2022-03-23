@@ -72,36 +72,49 @@ namespace ProgTetelek2
             Console.WriteLine("Add meg a relációt: ");
             relacio = Console.ReadLine();
 
-            for (int i = 0; i < tomb.Length; i++)
+
+            if ((relacio != "<") && (relacio != ">"))
             {
-                if ((relacio != "<") && (relacio != ">"))
-                {
-                    Console.WriteLine("Érvénytelen");
-                    ervenytelen = true;
-                    break;
-                }
+                Console.WriteLine("Érvénytelen");
+                ervenytelen = true;
             }
+            
             if (ervenytelen == false)
             {
                 for (int i = 0; i < tomb.Length; i++)
                 {
                     if (relacio == "<")
                     {
-                        for (int j = 0; j < tomb.Length; j++)
-                        {
-                            //...
-                        }
+                        if (tomb[i] < nagyobbvagye)
+                            {
+                                kisdb++;
+                            }
                     }
                     if (relacio == ">")
                     {
-                        for (int j = 0; j < tomb.Length; j++)
+                        if (tomb[i] > nagyobbvagye)
                         {
-                            nagytomb[j] = tomb[i];
-                        }
+                            nagydb++;
+                        }            
                     }
                 }
-
             }
+            Console.WriteLine("kisdb = {0} nagydb = {1}", kisdb, nagydb);
+            for (int i = 0; i <= kisdb; i++)
+            {
+                if (tomb[i] < nagyobbvagye)
+                {
+                    kicsitomb[i] = tomb[i];
+                }
+            }
+            for (int i = 0; i <= nagydb; i++)
+            {
+                if (tomb[i] > nagyobbvagye)
+                {
+                    nagytomb[i] = tomb[i];
+                }
+            }
+
             Console.WriteLine("A kicsi tömb elemei:");
             for (int i = 0; i < kicsitomb.Length; i++)
             {
@@ -194,3 +207,5 @@ namespace ProgTetelek2
         }
     }
 }
+
+// DDLC Steam
