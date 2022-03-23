@@ -32,26 +32,40 @@ namespace ProgTetelek2
             this.bennevane = 0;
         }
 
+        /*Kiválasztás metódusa
+        Bekér egy számot a felhasználótól és kiírja, hogy ez a szám hányadik helyen szerepel a számok között.*/
 
         public void Hanyadik(int hossz, int[] tomb)
         {
-            Console.WriteLine("Kiskacsóddal add meg melyik számot keressük");
+            bool bennevane = false;
+            Console.WriteLine("Add meg melyik számot keressük");
             hanyadikvagyok = int.Parse(Console.ReadLine());
             for (int i = 0; i < tomb.Length; i++)
             {
-                if (hanyadikvagyok == i)
+                if (hanyadikvagyok == tomb[i])
                 {
                     Console.WriteLine("A megadott szám a(z) {0} tömbindexen áll", i);
+                    bennevane = true;
                     break;
                 }
             }
+            if (bennevane == false)
+            {
+                Console.WriteLine("A keresett elem nincs a tömbben");
+            }
         }
 
-        public void Kicsinagy(int hossz, int[] tomb, int nagyobbvagye, string relacio)
+        /*Kiválogatás metódusa
+        Bekér egy számot és egy relációs jelet a felhasználótól és kiírja a relációnak megfelelő tömbelemeket.*/
+
+
+        public void Kicsinagy(int hossz, int[] tomb) //, int nagyobbvagye, string relacio)
         {
             int[] kicsitomb = new int[hossz];
             int[] nagytomb = new int[hossz];
-
+            bool ervenytelen = false;
+            int nagydb = 0;
+            int kisdb = 0;
             Console.WriteLine("Add meg a vizsgált értéket: ");
             nagyobbvagye = int.Parse(Console.ReadLine());
 
@@ -63,22 +77,30 @@ namespace ProgTetelek2
                 if ((relacio != "<") && (relacio != ">"))
                 {
                     Console.WriteLine("Érvénytelen");
+                    ervenytelen = true;
                     break;
                 }
-                if (relacio == "<")
+            }
+            if (ervenytelen == false)
+            {
+                for (int i = 0; i < tomb.Length; i++)
                 {
-                    for (int j = 0; j < tomb.Length; j++)
+                    if (relacio == "<")
                     {
-                        kicsitomb[j] = tomb[i];
+                        for (int j = 0; j < tomb.Length; j++)
+                        {
+                            
+                        }
+                    }
+                    if (relacio == ">")
+                    {
+                        for (int j = 0; j < tomb.Length; j++)
+                        {
+                            nagytomb[j] = tomb[i];
+                        }
                     }
                 }
-                if (relacio == ">")
-                {
-                    for (int j = 0; j < tomb.Length; j++)
-                    {
-                        nagytomb[j] = tomb[i];
-                    }
-                }
+
             }
             Console.WriteLine("A kicsi tömb elemei:");
             for (int i = 0; i < kicsitomb.Length; i++)
@@ -92,7 +114,7 @@ namespace ProgTetelek2
             }
 
         }
-
+        /*
         public void Bennevane(int hossz, int[] tomb, int bennevane)
         {
             bool tartalmazza = false;
@@ -110,7 +132,7 @@ namespace ProgTetelek2
                 Console.WriteLine("A megadott szám NINCS benne a tömbben.");
             }
         }
-
+        */
 
     }
 
@@ -142,27 +164,29 @@ namespace ProgTetelek2
             Console.WriteLine("\nA tömb elemei: ");
             for (int i = 0; i < tomb1.hossz; i++)
             {
-                Console.WriteLine(numbers[i]);
+                Console.WriteLine("{0} --> {1}", i, numbers[i]);
             }
 
             Console.WriteLine("\nA tömb elemeinek darabszáma: ");
             Console.WriteLine(tomb1.hossz);
 
 
-            Console.WriteLine("\nCustom érték keresése: ");
+            Console.WriteLine("\nCustom érték helyének keresése: ");
             tomb1.Hanyadik(tomb1.hossz, numbers);
-
+            
+            /*
             Console.WriteLine("\nTetszőleges érték: ");
             contains = int.Parse(Console.ReadLine());
             tomb1.Bennevane(tomb1.hossz, numbers, contains);
+            */
 
             Console.WriteLine("\nA tömb tetszőleges értékétől kisebb és nagyobb számok: ");
-            Console.WriteLine("A vizsgálandó érték: ");
-            bigorsmall = int.Parse(Console.ReadLine());
-            Console.WriteLine("Az összehasonlítás: ");
-            jel = Console.ReadLine();
+            //Console.WriteLine("A vizsgálandó érték: ");
+            //bigorsmall = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Az összehasonlítás: ");
+            //jel = Console.ReadLine();
 
-            tomb1.Kicsinagy(tomb1.hossz, numbers, bigorsmall, jel);
+            tomb1.Kicsinagy(tomb1.hossz, numbers); //, bigorsmall, jel);
 
 
 
